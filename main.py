@@ -59,7 +59,10 @@ def main():
         else:
             print('Битлинк:', bitlink)
     else:
-        print("Число кликов по ссылке:", count_clicks(TOKEN, url))
+        try:
+            print("Число кликов по ссылке:", count_clicks(TOKEN, url))
+        except requests.exceptions.HTTPError:
+            print("Введите корректную ссылку")
 
 
 
