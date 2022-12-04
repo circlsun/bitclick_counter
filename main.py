@@ -29,7 +29,6 @@ def count_clicks(token, bitlink):
         "Authorization": f"Bearer {TOKEN}"
     }
     params = (
-        ("unit", "day"),
         ("units", "-1"),
     )
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary"
