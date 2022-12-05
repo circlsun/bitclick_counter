@@ -15,9 +15,7 @@ def shorten_link(token, url):
     }
     url_shorten = "https://api-ssl.bitly.com/v4/shorten"
     payload = {
-        "long_url": url,
-        "domain": "bit.ly",
-        "default_group_guid": "Bmc3553pyRw"
+        "long_url": url
     }
     response = requests.post(url_shorten, headers=headers, json=payload)
     bitlink = json.loads(response.text)["id"]
