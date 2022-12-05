@@ -9,10 +9,7 @@ TOKEN = os.getenv('BITLY_TOKEN')
 
 
 def shorten_link(token, url):
-    headers = {
-        'Authorization': f"Bearer {TOKEN}",
-        'Content-Type': "application/json",
-    }
+    headers = {'Authorization': f"Bearer {TOKEN}"}
     url_shorten = "https://api-ssl.bitly.com/v4/shorten"
     payload = {
         "long_url": url
@@ -23,9 +20,7 @@ def shorten_link(token, url):
 
 
 def count_clicks(token, bitlink):
-    headers = {
-        "Authorization": f"Bearer {TOKEN}"
-    }
+    headers = {"Authorization": f"Bearer {TOKEN}"}
     params = (
         ("units", "-1"),
     )
