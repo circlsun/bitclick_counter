@@ -52,8 +52,6 @@ def main():
     if not is_bitlink(url):
         try:
             bitlink = shorten_link(TOKEN, url)
-            response = requests.get(f"https://{bitlink}")
-            response.raise_for_status()
         except requests.exceptions.HTTPError:
             print("Введите корректную ссылку")
         else:
