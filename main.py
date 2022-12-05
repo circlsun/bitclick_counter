@@ -1,6 +1,5 @@
 import requests
 import os
-import json
 from dotenv import load_dotenv
 
 
@@ -15,7 +14,7 @@ def shorten_link(token, url):
         "long_url": url
     }
     response = requests.post(url_shorten, headers=headers, json=payload)
-    bitlink = json.loads(response.text)["id"]
+    bitlink = response.json()["id"]
     return bitlink
 
 
@@ -26,7 +25,7 @@ def count_clicks(token, bitlink):
     )
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary"
     response = requests.get(url, headers=headers, params=params)
-    return json.loads(response.text)["total_clicks"]
+    return response.json()["total_clicks"]
 
 
 def is_bitlink(url):
