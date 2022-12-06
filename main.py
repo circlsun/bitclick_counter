@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 
 
 def shorten_link(token, url):
@@ -10,8 +11,7 @@ def shorten_link(token, url):
         "long_url": url
     }
     response = requests.post(url_shorten, headers=headers, json=payload)
-    bitlink = response.json()["id"]
-    return bitlink
+    return response.json()["id"]
 
 
 def count_clicks(token, bitlink):
@@ -28,7 +28,6 @@ def is_bitlink(token, url):
     headers = {'Authorization': f"Bearer {token}"}
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{url}"
     response = requests.get(url, headers=headers)
-    response.raise_for_status()
     return response.ok
 
 
@@ -43,20 +42,15 @@ def get_bitly_token():
 
 def main():
     token = get_bitly_token()
+    url = input("Введите ссылку: ")
     if token:
-        url = input("Введите ссылку: ")
-        if not is_bitlink(token, url):
-            try:
-                bitlink = shorten_link(token, url)
-            except requests.exceptions.HTTPError:
-                print("Введите корректную ссылку")
-            else:
-                print('Битлинк:', bitlink)
-        else:
-            try:
+        try:
+            if is_bitlink(token, url):
                 print("Число кликов по ссылке:", count_clicks(token, url))
-            except requests.exceptions.HTTPError:
-                print("Введите корректную ссылку")
+            else:
+                print('Битлинк:', shorten_link(token, url))
+        except requests.exceptions.HTTPError:
+            print("Введите корректную ссылку")
 
 
 if __name__ == "__main__":
