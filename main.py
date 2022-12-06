@@ -27,12 +27,9 @@ def count_clicks(token, bitlink):
 def is_bitlink(token, url):
     headers = {'Authorization': f"Bearer {token}"}
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{url}"
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-    except requests.exceptions.HTTPError:
-        return False
-    return True
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.ok
 
 
 def main():
