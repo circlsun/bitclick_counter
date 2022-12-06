@@ -11,6 +11,7 @@ def shorten_link(token, url):
         "long_url": url
     }
     response = requests.post(url_shorten, headers=headers, json=payload)
+    response.raise_for_status()
     return response.json()["id"]
 
 
@@ -21,6 +22,7 @@ def count_clicks(token, bitlink):
     )
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary"
     response = requests.get(url, headers=headers, params=params)
+    response.raise_for_status()
     return response.json()["total_clicks"]
 
 
@@ -43,10 +45,12 @@ def get_bitly_token():
 def main():
     token = get_bitly_token()
     url = input("Введите ссылку: ")
+    bit_url = f"{urlparse(url).netloc}{urlparse(url).path}"
+
     if token:
         try:
-            if is_bitlink(token, url):
-                print("Число кликов по ссылке:", count_clicks(token, url))
+            if is_bitlink(token, bit_url):
+                print("Число кликов по ссылке:", count_clicks(token, bit_url))
             else:
                 print('Битлинк:', shorten_link(token, url))
         except requests.exceptions.HTTPError:
