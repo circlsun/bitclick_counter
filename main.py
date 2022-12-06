@@ -1,7 +1,8 @@
-import requests
 import os
-from dotenv import load_dotenv
 from urllib.parse import urlparse
+
+import requests
+from dotenv import load_dotenv
 
 
 def shorten_link(token, url):
@@ -16,7 +17,9 @@ def shorten_link(token, url):
 
 
 def count_clicks(token, bitlink):
-    headers = {"Authorization": f"Bearer {token}"}
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
     params = (
         ("units", "-1"),
     )
@@ -27,7 +30,9 @@ def count_clicks(token, bitlink):
 
 
 def is_bitlink(token, url):
-    headers = {'Authorization': f"Bearer {token}"}
+    headers = {
+        'Authorization': f"Bearer {token}"
+    }
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{url}"
     response = requests.get(url, headers=headers)
     return response.ok
