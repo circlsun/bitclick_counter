@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 
 
 def shorten_link(token, url):
-    headers = {'Authorization': f"Bearer {token}"}
+    headers = {
+        'Authorization': f"Bearer {token}"
+    }
     url_shorten = "https://api-ssl.bitly.com/v4/shorten"
     payload = {
         "long_url": url
