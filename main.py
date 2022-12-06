@@ -46,15 +46,14 @@ def get_bitly_token():
         token = os.environ["BITLY_TOKEN"]
         return token
     except KeyError:
-        print("Дополните виртуальное окружение токеном bitly")
+        print("Дополните виртуальное окружение токеном от bitly")
 
 
 def main():
     token = get_bitly_token()
-    url = input("Введите ссылку: ")
-    bit_url = f"{urlparse(url).netloc}{urlparse(url).path}"
-
     if token:
+        url = input("Введите ссылку: ")
+        bit_url = f"{urlparse(url).netloc}{urlparse(url).path}"
         try:
             if is_bitlink(token, bit_url):
                 print("Число кликов по ссылке:", count_clicks(token, bit_url))
