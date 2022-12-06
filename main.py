@@ -36,22 +36,26 @@ def is_bitlink(token, url):
 
 
 def main():
-    token = os.getenv('BITLY_TOKEN')
     load_dotenv()
-    url = input("Введите ссылку: ")
-    if not is_bitlink(token, url):
-        try:
-            bitlink = shorten_link(token, url)
-        except requests.exceptions.HTTPError:
-            print("Введите корректную ссылку")
-        else:
-            print('Битлинк:', bitlink)
+    try:
+        token = os.environ["BITLY_TOKEN"]
+    except KeyError:
+        print("Дополните виртуальное окружение токеном bitly")
     else:
-        try:
-            print("Число кликов по ссылке:", count_clicks(token, url))
-        except requests.exceptions.HTTPError:
-            print("Введите корректную ссылку")
+        url = input("Введите ссылку: ")
 
+        if not is_bitlink(token, url):
+            try:
+                bitlink = shorten_link(token, url)
+            except requests.exceptions.HTTPError:
+                print("Введите корректную ссылку")
+            else:
+                print('Битлинк:', bitlink)
+        else:
+            try:
+                print("Число кликов по ссылке:", count_clicks(token, url))
+            except requests.exceptions.HTTPError:
+                print("Введите корректную ссылку")
 
 
 if __name__ == "__main__":
