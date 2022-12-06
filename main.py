@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv()
 TOKEN = os.getenv('BITLY_TOKEN')
 
 
@@ -40,6 +39,7 @@ def is_bitlink(url):
 
 
 def main():
+    load_dotenv()
     url = input("Введите ссылку: ")
     if not is_bitlink(url):
         try:
