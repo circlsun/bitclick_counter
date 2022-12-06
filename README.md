@@ -1,4 +1,4 @@
-# Bitly url shorterer
+# Bitly url shorterer and counter
 
 This project interacts with the [bit.ly](https://bitly.com/) for trimming links. Your link is sent to the input, and a shortened link like bit.ly/****** is output.
 You can also submit an already shortened link to the input, then the output will have the number of clicks on this link. 
@@ -25,7 +25,13 @@ The result will be:
 Bitly will not give you the data until you receive a personal "token". It is needed to interact with the Bitly API.
 To receive a token, you need to register on Bitly via e-mail.
 The link to generate the token is listed on the Bitly [Getting Started](https://dev.bitly.com/get_started.html)
+
 The received token must be placed in the ".env" file as `BITLY_TOKEN="insert you token"`.
+```
+/user/bitclick_counter/
+|--main.py
+|--.env
+```
 
 ## Installation
 
