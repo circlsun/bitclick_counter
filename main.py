@@ -36,26 +36,27 @@ def get_bitly_token():
     load_dotenv()
     try:
         token = os.environ["BITLY_TOKEN"]
+        return token
     except KeyError:
         print("Дополните виртуальное окружение токеном bitly")
-    return token
 
 
 def main():
     token = get_bitly_token()
-    url = input("Введите ссылку: ")
-    if not is_bitlink(token, url):
-        try:
-            bitlink = shorten_link(token, url)
-        except requests.exceptions.HTTPError:
-            print("Введите корректную ссылку")
+    if token:
+        url = input("Введите ссылку: ")
+        if not is_bitlink(token, url):
+            try:
+                bitlink = shorten_link(token, url)
+            except requests.exceptions.HTTPError:
+                print("Введите корректную ссылку")
+            else:
+                print('Битлинк:', bitlink)
         else:
-            print('Битлинк:', bitlink)
-    else:
-        try:
-            print("Число кликов по ссылке:", count_clicks(token, url))
-        except requests.exceptions.HTTPError:
-            print("Введите корректную ссылку")
+            try:
+                print("Число кликов по ссылке:", count_clicks(token, url))
+            except requests.exceptions.HTTPError:
+                print("Введите корректную ссылку")
 
 
 if __name__ == "__main__":
