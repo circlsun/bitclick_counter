@@ -20,20 +20,20 @@ The result will be:
 Битлинк: bit.ly/3VtdK6W
 Число кликов по ссылке: 0
 ```
-
-## Installation
+## Virtual envs
 
 Bitly will not give you the data until you receive a personal "token". It is needed to interact with the Bitly API.
 To receive a token, you need to register on Bitly via e-mail.
 The link to generate the token is listed on the Bitly [Getting Started](https://dev.bitly.com/get_started.html)
 The received token must be placed in the ".env" file as `BITLY_TOKEN="insert you token"`.
 
+## Installation
+
 Python3 should be already installed. 
 Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```
 pip install -r requirements.txt
 ```
-I don't think you need to use any virtual envs for such a small script.
 
 ## Project Goals
 
