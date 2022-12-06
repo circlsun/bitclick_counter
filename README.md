@@ -9,7 +9,7 @@ Entering and receiving a shortened link is carried out in the terminal
 
 Just run the python script `main.py` with the following concole command:
 ```
-python main.py <your URL>
+python main.py <http[s]://your URL/>
 ```
 For example:
 ```
