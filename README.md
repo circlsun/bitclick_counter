@@ -11,15 +11,23 @@ Just run the python script `main.py` with the following concole command:
 ```
 python main.py <http[s]://your URL/>
 ```
-For example:
+#### For example:
 ```
 python main.py https://dvmn.org/
 ```
 The result will be:
 ```
 Битлинк: bit.ly/3VtdK6W
+```
+#### If insert bitlink:
+```
+python main.py bit.ly/3VtdK6W
+```
+The result will be:
+```
 Число кликов по ссылке: 0
 ```
+
 ## Virtual envs
 
 Bitly will not give you the data until you receive a personal "token". It is needed to interact with the Bitly API.
