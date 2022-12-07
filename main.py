@@ -44,16 +44,18 @@ def main():
     load_dotenv()
     try:
         token = os.environ["BITLY_TOKEN"]
-        url = input("Введите ссылку: ")
-        parsed_url = urlparse(url)
-        link = f"{parsed_url.netloc}{parsed_url.path}"
+        user_url = input("Введите ссылку: ")
+        parsed_url = urlparse(user_url)
+        bitlink = f"{parsed_url.netloc}{parsed_url.path}"
+
         try:
-            if is_bitlink(token, link):
-                print("Число кликов по ссылке:", count_clicks(token, link))
+            if is_bitlink(token, bitlink):
+                print("Число кликов по ссылке:", count_clicks(token, bitlink))
             else:
-                print('Битлинк:', shorten_link(token, url))
+                print('Битлинк:', shorten_link(token, user_url))
         except requests.exceptions.HTTPError:
             print("Введите корректную ссылку")
+
     except KeyError:
         print("Дополните виртуальное окружение токеном от bitly")
 
