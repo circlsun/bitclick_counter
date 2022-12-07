@@ -40,27 +40,22 @@ def is_bitlink(token, url):
     return response.ok
 
 
-def get_bitly_token():
+def main():
     load_dotenv()
     try:
         token = os.environ["BITLY_TOKEN"]
-        return token
-    except KeyError:
-        print("Дополните виртуальное окружение токеном от bitly")
-
-
-def main():
-    token = get_bitly_token()
-    if token:
         url = input("Введите ссылку: ")
-        bit_url = f"{urlparse(url).netloc}{urlparse(url).path}"
+        parsed_url = urlparse(url)
+        link = f"{parsed_url.netloc}{parsed_url.path}"
         try:
-            if is_bitlink(token, bit_url):
-                print("Число кликов по ссылке:", count_clicks(token, bit_url))
+            if is_bitlink(token, link):
+                print("Число кликов по ссылке:", count_clicks(token, link))
             else:
                 print('Битлинк:', shorten_link(token, url))
         except requests.exceptions.HTTPError:
             print("Введите корректную ссылку")
+    except KeyError:
+        print("Дополните виртуальное окружение токеном от bitly")
 
 
 if __name__ == "__main__":
