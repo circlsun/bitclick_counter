@@ -47,12 +47,12 @@ def main():
         token = os.environ["BITLY_TOKEN"]
     except KeyError:
         token = None
-        print("Дополните файл виртуального окружения <.env> токеном от bitly")
+        print("Add a token from Bitly to the virtual environment file <.env>")
 
     parser = argparse.ArgumentParser(
-        description='Этот скрипт сокращает длинные ссылки и считает \
-            количество переходов по bitlink ссылкам')
-    parser.add_argument('link', help='Ваша ссылка')
+        description='This script shortens long links and counts the number \
+            of clicks on bitlinks')
+    parser.add_argument('link', help='Your link')
     arg = parser.parse_args()
     user_url = arg.link
 
@@ -61,11 +61,11 @@ def main():
         bitlink = f"{parsed_url.netloc}{parsed_url.path}"
         try:
             if is_bitlink(token, bitlink):
-                print("Число кликов по ссылке:", count_clicks(token, bitlink))
+                print("The number of clicks on the link:", count_clicks(token, bitlink))
             else:
-                print('Битлинк:', shorten_link(token, user_url))
+                print('Bitlink:', shorten_link(token, user_url))
         except requests.exceptions.HTTPError:
-            print("Введите корректную ссылку")
+            print("Enter the correct link")
 
 
 if __name__ == "__main__":
