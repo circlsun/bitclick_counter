@@ -17,7 +17,7 @@ python main.py https://dvmn.org/
 ```
 The result will be:
 ```
-Битлинк: bit.ly/3VtdK6W
+Bitlink: bit.ly/3VtdK6W
 ```
 #### If insert bitlink:
 ```
@@ -25,7 +25,7 @@ python main.py bit.ly/3VtdK6W
 ```
 The result will be:
 ```
-Число кликов по ссылке: 0
+The number of clicks on the link: 0
 ```
 
 ## Virtual envs
@@ -39,6 +39,10 @@ The received token must be placed in the ".env" file as `BITLY_TOKEN="insert you
 /user/bitclick_counter/
 |--main.py
 |--.env
+```
+If the token is not in the ".env" file, the result will be:
+```
+Add a token from Bitly to the virtual environment file <.env>
 ```
 
 ## Installation
