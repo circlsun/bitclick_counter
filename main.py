@@ -61,7 +61,8 @@ def main():
         bitlink = f"{parsed_url.netloc}{parsed_url.path}"
         try:
             if is_bitlink(token, bitlink):
-                print("The number of clicks on the link:", count_clicks(token, bitlink))
+                print(f"The number of clicks on the link: "
+                      f"{count_clicks(token, bitlink)}")
             else:
                 print('Bitlink:', shorten_link(token, user_url))
         except requests.exceptions.HTTPError:
