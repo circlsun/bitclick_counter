@@ -43,18 +43,20 @@ def is_bitlink(token, url):
 
 def main():
     load_dotenv()
-    parser = argparse.ArgumentParser(
-        description='Этот скрипт сокращает длинные ссылки и считает \
-            количесво переходов по коротким ссылкам')
-    parser.parse_args()
     try:
         token = os.environ["BITLY_TOKEN"]
     except KeyError:
         token = None
-        print("Дополните виртуальное окружение токеном от bitly")
+        print("Дополните файл виртуального окружения <.env> токеном от bitly")
+
+    parser = argparse.ArgumentParser(
+        description='Этот скрипт сокращает длинные ссылки и считает \
+            количество переходов по bitlink ссылкам')
+    parser.add_argument('link', help='Ваша ссылка')
+    arg = parser.parse_args()
+    user_url = arg.link
 
     if token:
-        user_url = input("Введите ссылку: ")
         parsed_url = urlparse(user_url)
         bitlink = f"{parsed_url.netloc}{parsed_url.path}"
         try:
