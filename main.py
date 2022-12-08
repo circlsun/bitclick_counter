@@ -53,8 +53,8 @@ def main():
         description='This script shortens long links and counts the number \
             of clicks on bitlinks')
     parser.add_argument('link', help='Your link')
-    arg = parser.parse_args()
-    user_url = arg.link
+    args = parser.parse_args()
+    user_url = args.link
 
     if token:
         parsed_url = urlparse(user_url)
