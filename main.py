@@ -1,4 +1,5 @@
 import os
+import argparse
 from urllib.parse import urlparse
 
 import requests
@@ -42,6 +43,10 @@ def is_bitlink(token, url):
 
 def main():
     load_dotenv()
+    parser = argparse.ArgumentParser(
+        description='Этот скрипт сокращает длинные ссылки и считает \
+            количесво переходов по коротким ссылкам')
+    parser.parse_args()
     try:
         token = os.environ["BITLY_TOKEN"]
     except KeyError:
